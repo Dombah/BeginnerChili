@@ -42,5 +42,27 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	// x and y modifiers
+	// NOTE: upper < 795 and lower < 595
+	int upper = 300;
+	int lower = 200;
+	// Upper par of crosshair
+	gfx.PutPixel(upper, lower - 5, 255, 255, 255);
+	gfx.PutPixel(upper, lower -4, 255, 255, 255);
+	gfx.PutPixel(upper, lower - 3, 255, 255, 255);
+	gfx.PutPixel(upper, lower - 2, 255, 255, 255);
+	gfx.PutPixel(upper, lower + 2, 255, 255, 255);
+	gfx.PutPixel(upper, lower + 3, 255, 255, 255);
+	gfx.PutPixel(upper, lower + 4, 255, 255, 255);
+	gfx.PutPixel(upper, lower + 5, 255, 255, 255);
 
+	// Lower part of crosshair
+	gfx.PutPixel(upper -5, lower, 255, 255, 255);
+	gfx.PutPixel(upper - 4, lower, 255, 255, 255);
+	gfx.PutPixel(upper - 3, lower, 255, 255, 255);
+	gfx.PutPixel(upper - 2, lower, 255, 255, 255);
+	gfx.PutPixel(upper + 2, lower, 255, 255, 255);
+	gfx.PutPixel(upper + 3, lower, 255, 255, 255);
+	gfx.PutPixel(upper + 4, lower, 255, 255, 255);
+	gfx.PutPixel(upper + 5, lower, 255, 255, 255);
 }
