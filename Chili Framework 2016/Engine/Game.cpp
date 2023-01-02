@@ -44,25 +44,180 @@ void Game::ComposeFrame()
 {
 	// x and y modifiers
 	// NOTE: upper < 795 and lower < 595
-	int upper = 300;
-	int lower = 200;
-	// Upper par of crosshair
-	gfx.PutPixel(upper, lower - 5, 255, 255, 255);
-	gfx.PutPixel(upper, lower -4, 255, 255, 255);
-	gfx.PutPixel(upper, lower - 3, 255, 255, 255);
-	gfx.PutPixel(upper, lower - 2, 255, 255, 255);
-	gfx.PutPixel(upper, lower + 2, 255, 255, 255);
-	gfx.PutPixel(upper, lower + 3, 255, 255, 255);
-	gfx.PutPixel(upper, lower + 4, 255, 255, 255);
-	gfx.PutPixel(upper, lower + 5, 255, 255, 255);
+	//		 upper > 4   and lower > 4
+	int x = 400; // x value of center of crosshair
+	int y = 300; // y value of center of crosshair
 
-	// Lower part of crosshair
-	gfx.PutPixel(upper -5, lower, 255, 255, 255);
-	gfx.PutPixel(upper - 4, lower, 255, 255, 255);
-	gfx.PutPixel(upper - 3, lower, 255, 255, 255);
-	gfx.PutPixel(upper - 2, lower, 255, 255, 255);
-	gfx.PutPixel(upper + 2, lower, 255, 255, 255);
-	gfx.PutPixel(upper + 3, lower, 255, 255, 255);
-	gfx.PutPixel(upper + 4, lower, 255, 255, 255);
-	gfx.PutPixel(upper + 5, lower, 255, 255, 255);
+	int r = 255, g = 255, b = 255;
+
+	int movement_Offset = 100;
+	/*Homework*/
+	
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		y -= movement_Offset;
+		if (wnd.kbd.KeyIsPressed(VK_LEFT))
+		{
+			x -= movement_Offset;
+		}
+		else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+		{
+			x += movement_Offset;
+		}
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		y += movement_Offset;
+		if (wnd.kbd.KeyIsPressed(VK_LEFT))
+		{
+			x -= movement_Offset;
+		}
+		else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+		{
+			x += movement_Offset;
+		}
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		x -= movement_Offset;
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		x += movement_Offset;
+	}
+
+	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
+	{
+		g = 0;
+		b = 0;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		// Upper part of crosshair
+		gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
+		gfx.PutPixel(x - 7, y - 6 + 1, r, g, b);
+		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
+		gfx.PutPixel(x - 7, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x - 6, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x - 5, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x - 4, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x + 7, y - 5 + 1, r, g, b);
+		gfx.PutPixel(x + 7, y - 6 + 1, r, g, b);
+		gfx.PutPixel(x + 7, y - 7 + 1, r, g, b);
+		gfx.PutPixel(x + 7, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x + 6, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x + 5, y - 8 + 1, r, g, b);
+		gfx.PutPixel(x + 4, y - 8 + 1, r, g, b);
+
+		// Lower part of crosshair
+		gfx.PutPixel(x - 7, y + 5 - 1, r, g, b);
+		gfx.PutPixel(x - 7, y + 6 - 1, r, g, b);
+		gfx.PutPixel(x - 7, y + 7 - 1, r, g, b);
+		gfx.PutPixel(x - 7, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x - 6, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x - 5, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x - 4, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x + 7, y + 5 - 1, r, g, b);
+		gfx.PutPixel(x + 7, y + 6 - 1, r, g, b);
+		gfx.PutPixel(x + 7, y + 7 - 1, r, g, b);
+		gfx.PutPixel(x + 7, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x + 6, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x + 5, y + 8 - 1, r, g, b);
+		gfx.PutPixel(x + 4, y + 8 - 1, r, g, b);
+	}
+	else
+	{
+		// Upper part of crosshair
+		gfx.PutPixel(x, y - 5, r, g, b);
+		gfx.PutPixel(x, y - 4, r, g, b);
+		gfx.PutPixel(x, y - 3, r, g, b);
+		gfx.PutPixel(x, y - 2, r, g, b);
+		gfx.PutPixel(x, y + 2, r, g, b);
+		gfx.PutPixel(x, y + 3, r, g, b);
+		gfx.PutPixel(x, y + 4, r, g, b);
+		gfx.PutPixel(x, y + 5, r, g, b);
+
+		// Lower part of crosshair
+		gfx.PutPixel(x - 5, y, r, g, b);
+		gfx.PutPixel(x - 4, y, r, g, b);
+		gfx.PutPixel(x - 3, y, r, g, b);
+		gfx.PutPixel(x - 2, y, r, g, b);
+		gfx.PutPixel(x + 2, y, r, g, b);
+		gfx.PutPixel(x + 3, y, r, g, b);
+		gfx.PutPixel(x + 4, y, r, g, b);
+		gfx.PutPixel(x + 5, y, r, g, b);
+	}
+
+
+	/*
+	if(wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		if (wnd.kbd.KeyIsPressed(VK_DOWN))
+		{
+			// Upper part of crosshair
+			gfx.PutPixel(x, y - 5, 255, 255, 255);
+			gfx.PutPixel(x, y - 4, 255, 255, 255);
+			gfx.PutPixel(x, y - 3, 255, 255, 255);
+			gfx.PutPixel(x, y - 2, 255, 255, 255);
+			gfx.PutPixel(x, y + 2, 255, 255, 255);
+			gfx.PutPixel(x, y + 3, 255, 255, 255);
+			gfx.PutPixel(x, y + 4, 255, 255, 255);
+			gfx.PutPixel(x, y + 5, 255, 255, 255);
+
+			// Lower part of crosshair
+			gfx.PutPixel(x - 5, y, 255, 255, 255);
+			gfx.PutPixel(x - 4, y, 255, 255, 255);
+			gfx.PutPixel(x - 3, y, 255, 255, 255);
+			gfx.PutPixel(x - 2, y, 255, 255, 255);
+			gfx.PutPixel(x + 2, y, 255, 255, 255);
+			gfx.PutPixel(x + 3, y, 255, 255, 255);
+			gfx.PutPixel(x + 4, y, 255, 255, 255);
+			gfx.PutPixel(x + 5, y, 255, 255, 255);
+		}	
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		// Upper part of crosshair
+		gfx.PutPixel(x, y - 5, 255, 0, 255);
+		gfx.PutPixel(x, y - 4, 255, 0, 255);
+		gfx.PutPixel(x, y - 3, 255, 0, 255);
+		gfx.PutPixel(x, y - 2, 255, 0, 255);
+		gfx.PutPixel(x, y + 2, 255, 0, 255);
+		gfx.PutPixel(x, y + 3, 255, 0, 255);
+		gfx.PutPixel(x, y + 4, 255, 0, 255);
+		gfx.PutPixel(x, y + 5, 255, 0, 255);
+
+		// Lower part of crosshair
+		gfx.PutPixel(x - 5, y, 255, 0, 255);
+		gfx.PutPixel(x - 4, y, 255, 0, 255);
+		gfx.PutPixel(x - 3, y, 255, 0, 255);
+		gfx.PutPixel(x - 2, y, 255, 0, 255);
+		gfx.PutPixel(x + 2, y, 255, 0, 255);
+		gfx.PutPixel(x + 3, y, 255, 0, 255);
+		gfx.PutPixel(x + 4, y, 255, 0, 255);
+		gfx.PutPixel(x + 5, y, 255, 0, 255);
+	}
+	else
+	{
+		// Upper part of crosshair
+		gfx.PutPixel(x, y - 5, 255, 0, 0);
+		gfx.PutPixel(x, y - 4, 255, 0, 0);
+		gfx.PutPixel(x, y - 3, 255, 0, 0);
+		gfx.PutPixel(x, y - 2, 255, 0, 0);
+		gfx.PutPixel(x, y + 2, 255, 0, 0);
+		gfx.PutPixel(x, y + 3, 255, 0, 0);
+		gfx.PutPixel(x, y + 4, 255, 0, 0);
+		gfx.PutPixel(x, y + 5, 255, 0, 0);
+									   
+		// Lower part of crosshair	   
+		gfx.PutPixel(x - 5, y, 255, 0, 0);
+		gfx.PutPixel(x - 4, y, 255, 0, 0);
+		gfx.PutPixel(x - 3, y, 255, 0, 0);
+		gfx.PutPixel(x - 2, y, 255, 0, 0);
+		gfx.PutPixel(x + 2, y, 255, 0, 0);
+		gfx.PutPixel(x + 3, y, 255, 0, 0);
+		gfx.PutPixel(x + 4, y, 255, 0, 0);
+		gfx.PutPixel(x + 5, y, 255, 0, 0);
+	}
+	*/
 }
