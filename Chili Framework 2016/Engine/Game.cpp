@@ -56,32 +56,16 @@ void Game::ComposeFrame()
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		y -= movement_Offset;
-		if (wnd.kbd.KeyIsPressed(VK_LEFT))
-		{
-			x -= movement_Offset;
-		}
-		else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-		{
-			x += movement_Offset;
-		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
 		y += movement_Offset;
-		if (wnd.kbd.KeyIsPressed(VK_LEFT))
-		{
-			x -= movement_Offset;
-		}
-		else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-		{
-			x += movement_Offset;
-		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
 		x -= movement_Offset;
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
 		x += movement_Offset;
 	}
