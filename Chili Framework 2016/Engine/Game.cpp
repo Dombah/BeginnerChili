@@ -42,16 +42,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	// x and y modifiers
-	// NOTE: upper < 795 and lower < 595
-	//		 upper > 4   and lower > 4
-	int x = 400; // x value of center of crosshair
-	int y = 300; // y value of center of crosshair
-
 	int r = 255, g = 255, b = 255;
 
-	int movement_Offset = 100;
-	/*Homework*/
+	int movement_Offset = 1;
 	
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
@@ -69,7 +62,6 @@ void Game::ComposeFrame()
 	{
 		x += movement_Offset;
 	}
-
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
 	{
 		g = 0;

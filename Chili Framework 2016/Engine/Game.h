@@ -41,6 +41,10 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
-	/*  User Variables              */
+	// x and y modifiers
+	// NOTE: upper < 795 and lower < 595
+	//		 upper > 4   and lower > 4
+	int x = 400; // x value of center of crosshair
+	int y = 300; // y value of center of crosshair
 	/********************************/
 };
