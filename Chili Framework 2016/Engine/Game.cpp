@@ -38,36 +38,73 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-}
-
-void Game::ComposeFrame()
-{
-	int r = 255, g = 255, b = 255;
-
-	int movement_Offset = 1;
-	
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y -= movement_Offset;
+		if (!inhibitUp)
+		{
+			vy = vy - mv_Increment;
+			inhibitUp = true;
+		}
+	}
+	else
+	{
+		inhibitUp = false;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += movement_Offset;
+		if (!inhibitDown)
+		{
+			vy = vy + mv_Increment;
+			inhibitDown = true;
+		}
+	}
+	else
+	{
+		inhibitDown = false;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= movement_Offset;
+		if (!inhibitRight)
+		{
+			vx = vx - mv_Increment;
+			inhibitLeft = true;
+		}
+	}
+	else
+	{
+		inhibitLeft = false;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x += movement_Offset;
+		if (!inhibitRight)
+		{
+			vx = vx + mv_Increment;
+			inhibitRight = true;
+		}
+	}
+	else
+	{
+		inhibitRight = false;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
 	{
 		g = 0;
 		b = 0;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	else
+	{
+		g = 255;
+		b = 255;
+	}
+	isShapeChanged = wnd.kbd.KeyIsPressed(VK_SPACE);
+	x += vx;
+	y += vy;
+
+}
+
+void Game::ComposeFrame()
+{
+	if(isShapeChanged)
 	{
 		// Upper part of crosshair
 		gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
@@ -123,77 +160,4 @@ void Game::ComposeFrame()
 		gfx.PutPixel(x + 4, y, r, g, b);
 		gfx.PutPixel(x + 5, y, r, g, b);
 	}
-
-
-	/*
-	if(wnd.kbd.KeyIsPressed(VK_UP))
-	{
-		if (wnd.kbd.KeyIsPressed(VK_DOWN))
-		{
-			// Upper part of crosshair
-			gfx.PutPixel(x, y - 5, 255, 255, 255);
-			gfx.PutPixel(x, y - 4, 255, 255, 255);
-			gfx.PutPixel(x, y - 3, 255, 255, 255);
-			gfx.PutPixel(x, y - 2, 255, 255, 255);
-			gfx.PutPixel(x, y + 2, 255, 255, 255);
-			gfx.PutPixel(x, y + 3, 255, 255, 255);
-			gfx.PutPixel(x, y + 4, 255, 255, 255);
-			gfx.PutPixel(x, y + 5, 255, 255, 255);
-
-			// Lower part of crosshair
-			gfx.PutPixel(x - 5, y, 255, 255, 255);
-			gfx.PutPixel(x - 4, y, 255, 255, 255);
-			gfx.PutPixel(x - 3, y, 255, 255, 255);
-			gfx.PutPixel(x - 2, y, 255, 255, 255);
-			gfx.PutPixel(x + 2, y, 255, 255, 255);
-			gfx.PutPixel(x + 3, y, 255, 255, 255);
-			gfx.PutPixel(x + 4, y, 255, 255, 255);
-			gfx.PutPixel(x + 5, y, 255, 255, 255);
-		}	
-	}
-	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		// Upper part of crosshair
-		gfx.PutPixel(x, y - 5, 255, 0, 255);
-		gfx.PutPixel(x, y - 4, 255, 0, 255);
-		gfx.PutPixel(x, y - 3, 255, 0, 255);
-		gfx.PutPixel(x, y - 2, 255, 0, 255);
-		gfx.PutPixel(x, y + 2, 255, 0, 255);
-		gfx.PutPixel(x, y + 3, 255, 0, 255);
-		gfx.PutPixel(x, y + 4, 255, 0, 255);
-		gfx.PutPixel(x, y + 5, 255, 0, 255);
-
-		// Lower part of crosshair
-		gfx.PutPixel(x - 5, y, 255, 0, 255);
-		gfx.PutPixel(x - 4, y, 255, 0, 255);
-		gfx.PutPixel(x - 3, y, 255, 0, 255);
-		gfx.PutPixel(x - 2, y, 255, 0, 255);
-		gfx.PutPixel(x + 2, y, 255, 0, 255);
-		gfx.PutPixel(x + 3, y, 255, 0, 255);
-		gfx.PutPixel(x + 4, y, 255, 0, 255);
-		gfx.PutPixel(x + 5, y, 255, 0, 255);
-	}
-	else
-	{
-		// Upper part of crosshair
-		gfx.PutPixel(x, y - 5, 255, 0, 0);
-		gfx.PutPixel(x, y - 4, 255, 0, 0);
-		gfx.PutPixel(x, y - 3, 255, 0, 0);
-		gfx.PutPixel(x, y - 2, 255, 0, 0);
-		gfx.PutPixel(x, y + 2, 255, 0, 0);
-		gfx.PutPixel(x, y + 3, 255, 0, 0);
-		gfx.PutPixel(x, y + 4, 255, 0, 0);
-		gfx.PutPixel(x, y + 5, 255, 0, 0);
-									   
-		// Lower part of crosshair	   
-		gfx.PutPixel(x - 5, y, 255, 0, 0);
-		gfx.PutPixel(x - 4, y, 255, 0, 0);
-		gfx.PutPixel(x - 3, y, 255, 0, 0);
-		gfx.PutPixel(x - 2, y, 255, 0, 0);
-		gfx.PutPixel(x + 2, y, 255, 0, 0);
-		gfx.PutPixel(x + 3, y, 255, 0, 0);
-		gfx.PutPixel(x + 4, y, 255, 0, 0);
-		gfx.PutPixel(x + 5, y, 255, 0, 0);
-	}
-	*/
 }

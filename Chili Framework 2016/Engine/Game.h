@@ -46,5 +46,14 @@ private:
 	//		 upper > 4   and lower > 4
 	int x = 400; // x value of center of crosshair
 	int y = 300; // y value of center of crosshair
+	int vx = 0;
+	int vy = 0;
+	int mv_Increment = 1;
+	int r = 255, g = 255, b = 255;
+	bool isShapeChanged = false;
+	bool inhibitUp = false;
+	bool inhibitDown = false;
+	bool inhibitLeft = false;
+	bool inhibitRight = false;
 	/********************************/
 };
