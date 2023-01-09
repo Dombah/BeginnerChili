@@ -64,7 +64,7 @@ void Game::UpdateModel()
 	}
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		if (!inhibitRight)
+		if (!inhibitLeft)
 		{
 			vx = vx - mv_Increment;
 			inhibitLeft = true;
@@ -99,6 +99,42 @@ void Game::UpdateModel()
 	isShapeChanged = wnd.kbd.KeyIsPressed(VK_SPACE);
 	x += vx;
 	y += vy;
+	if (x + 5 > gfx.ScreenWidth - 5)
+	{
+		if (!isShapeChanged)
+			x = 794;
+		else
+			x = 791;
+	}
+	else if (x - 7 < 0)
+	{
+		if (!isShapeChanged)
+			x = 5;
+		else
+			x = 8;
+	}
+	if (y - 7 < 0)
+	{
+		if (!isShapeChanged)
+			y = 5;
+		else
+			y = 8;
+	}
+	else if (y + 5 > gfx.ScreenHeight - 5)
+	{
+		if (!isShapeChanged)
+			y = 594;
+		else
+			y = 592;
+	}
+	if (x > 200 && x < 400)
+	{	
+		g = 0;
+	}
+	else
+	{
+		g = 255;
+	}
 
 }
 
@@ -109,7 +145,7 @@ void Game::ComposeFrame()
 		// Upper part of crosshair
 		gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
 		gfx.PutPixel(x - 7, y - 6 + 1, r, g, b);
-		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
+ 		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
 		gfx.PutPixel(x - 7, y - 8 + 1, r, g, b);
 		gfx.PutPixel(x - 6, y - 8 + 1, r, g, b);
 		gfx.PutPixel(x - 5, y - 8 + 1, r, g, b);
