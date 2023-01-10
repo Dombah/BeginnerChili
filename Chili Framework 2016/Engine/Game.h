@@ -37,6 +37,10 @@ private:
 	/********************************/
 	void DrawBox(int x, int y, int r, int g, int b);
 	bool CollisionChecker(int x_Box0, int x_Box1, int y_Box0, int y_Box1);
+	/*Homework*/
+	void InhibitMovementPastScreenSize();
+	int InhibitMovementPastScreenSizeHardX(int x_mobile);
+	int InhibitMovementPastScreenSizeHardY(int y_mobile);
 	/********************************/
 private:
 	MainWindow& wnd;
