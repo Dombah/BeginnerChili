@@ -127,25 +127,26 @@ void Game::UpdateModel()
 		else
 			y = 592;
 	}
-	if (x > 200 && x < 400)
-	{	
-		g = 0;
-	}
-	else
+	/*Homework part*/
+	if (x >= draw_x - 14 && x <= draw_x + 14)
 	{
-		g = 255;
+		if (y >= draw_y - 14 && y <= draw_y + 14)
+		{
+			g = 0;
+			b = 0;
+		}
 	}
 
 }
 
 void Game::ComposeFrame()
 {
-	if(isShapeChanged)
+	if(!isShapeChanged)
 	{
 		// Upper part of crosshair
 		gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
 		gfx.PutPixel(x - 7, y - 6 + 1, r, g, b);
- 		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
+		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
 		gfx.PutPixel(x - 7, y - 8 + 1, r, g, b);
 		gfx.PutPixel(x - 6, y - 8 + 1, r, g, b);
 		gfx.PutPixel(x - 5, y - 8 + 1, r, g, b);
@@ -196,4 +197,40 @@ void Game::ComposeFrame()
 		gfx.PutPixel(x + 4, y, r, g, b);
 		gfx.PutPixel(x + 5, y, r, g, b);
 	}
+	Draw(draw_x, draw_y, 0, 255, 0);
+}
+
+void Game::Draw(int x, int y, int r, int g ,int b)
+{
+	// Upper part of crosshair
+	gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
+	gfx.PutPixel(x - 7, y - 6 + 1, r, g, b);
+	gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
+	gfx.PutPixel(x - 7, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x - 6, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x - 5, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x - 4, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x + 7, y - 5 + 1, r, g, b);
+	gfx.PutPixel(x + 7, y - 6 + 1, r, g, b);
+	gfx.PutPixel(x + 7, y - 7 + 1, r, g, b);
+	gfx.PutPixel(x + 7, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x + 6, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x + 5, y - 8 + 1, r, g, b);
+	gfx.PutPixel(x + 4, y - 8 + 1, r, g, b);
+
+	// Lower part of crosshair
+	gfx.PutPixel(x - 7, y + 5 - 1, r, g, b);
+	gfx.PutPixel(x - 7, y + 6 - 1, r, g, b);
+	gfx.PutPixel(x - 7, y + 7 - 1, r, g, b);
+	gfx.PutPixel(x - 7, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x - 6, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x - 5, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x - 4, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x + 7, y + 5 - 1, r, g, b);
+	gfx.PutPixel(x + 7, y + 6 - 1, r, g, b);
+	gfx.PutPixel(x + 7, y + 7 - 1, r, g, b);
+	gfx.PutPixel(x + 7, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x + 6, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x + 5, y + 8 - 1, r, g, b);
+	gfx.PutPixel(x + 4, y + 8 - 1, r, g, b);
 }

@@ -35,7 +35,7 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 	/********************************/
-	/*  User Functions              */
+	void Draw(int x, int y, int r, int g, int b);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -44,10 +44,12 @@ private:
 	// x and y modifiers
 	// NOTE: upper < 795 and lower < 595
 	//		 upper > 4   and lower > 4
-	int x = 400; // x value of center of crosshair
-	int y = 300; // y value of center of crosshair
+	int x = 286; // x value of center of crosshair
+	int y = 400; // y value of center of crosshair
 	int vx = 0;
 	int vy = 0;
+	int draw_x = 300;
+	int draw_y = 400;
 	int mv_Increment = 1;
 	int r = 255, g = 255, b = 255;
 	bool isShapeChanged = false;
