@@ -96,111 +96,31 @@ void Game::UpdateModel()
 		g = 255;
 		b = 255;
 	}
-	isShapeChanged = wnd.kbd.KeyIsPressed(VK_SPACE);
 	x += vx;
 	y += vy;
-	if (x + 5 > gfx.ScreenWidth - 5)
-	{
-		if (!isShapeChanged)
-			x = 794;
-		else
-			x = 791;
-	}
-	else if (x - 7 < 0)
-	{
-		if (!isShapeChanged)
-			x = 5;
-		else
-			x = 8;
-	}
-	if (y - 7 < 0)
-	{
-		if (!isShapeChanged)
-			y = 5;
-		else
-			y = 8;
-	}
-	else if (y + 5 > gfx.ScreenHeight - 5)
-	{
-		if (!isShapeChanged)
-			y = 594;
-		else
-			y = 592;
-	}
-	/*Homework part*/
-	if (x >= draw_x - 14 && x <= draw_x + 14)
-	{
-		if (y >= draw_y - 14 && y <= draw_y + 14)
-		{
-			g = 0;
-			b = 0;
-		}
-	}
+	isColliding = CollisionChecker(x, draw_x, y, draw_y) ||
+				  CollisionChecker(x, draw_x1, y, draw_y1);
 
 }
 
 void Game::ComposeFrame()
 {
-	if(!isShapeChanged)
+	if (isColliding)
 	{
-		// Upper part of crosshair
-		gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
-		gfx.PutPixel(x - 7, y - 6 + 1, r, g, b);
-		gfx.PutPixel(x - 7, y - 7 + 1, r, g, b);
-		gfx.PutPixel(x - 7, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x - 6, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x - 5, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x - 4, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x + 7, y - 5 + 1, r, g, b);
-		gfx.PutPixel(x + 7, y - 6 + 1, r, g, b);
-		gfx.PutPixel(x + 7, y - 7 + 1, r, g, b);
-		gfx.PutPixel(x + 7, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x + 6, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x + 5, y - 8 + 1, r, g, b);
-		gfx.PutPixel(x + 4, y - 8 + 1, r, g, b);
-
-		// Lower part of crosshair
-		gfx.PutPixel(x - 7, y + 5 - 1, r, g, b);
-		gfx.PutPixel(x - 7, y + 6 - 1, r, g, b);
-		gfx.PutPixel(x - 7, y + 7 - 1, r, g, b);
-		gfx.PutPixel(x - 7, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x - 6, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x - 5, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x - 4, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x + 7, y + 5 - 1, r, g, b);
-		gfx.PutPixel(x + 7, y + 6 - 1, r, g, b);
-		gfx.PutPixel(x + 7, y + 7 - 1, r, g, b);
-		gfx.PutPixel(x + 7, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x + 6, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x + 5, y + 8 - 1, r, g, b);
-		gfx.PutPixel(x + 4, y + 8 - 1, r, g, b);
+		g = 0;
+		b = 0;
 	}
 	else
 	{
-		// Upper part of crosshair
-		gfx.PutPixel(x, y - 5, r, g, b);
-		gfx.PutPixel(x, y - 4, r, g, b);
-		gfx.PutPixel(x, y - 3, r, g, b);
-		gfx.PutPixel(x, y - 2, r, g, b);
-		gfx.PutPixel(x, y + 2, r, g, b);
-		gfx.PutPixel(x, y + 3, r, g, b);
-		gfx.PutPixel(x, y + 4, r, g, b);
-		gfx.PutPixel(x, y + 5, r, g, b);
-
-		// Lower part of crosshair
-		gfx.PutPixel(x - 5, y, r, g, b);
-		gfx.PutPixel(x - 4, y, r, g, b);
-		gfx.PutPixel(x - 3, y, r, g, b);
-		gfx.PutPixel(x - 2, y, r, g, b);
-		gfx.PutPixel(x + 2, y, r, g, b);
-		gfx.PutPixel(x + 3, y, r, g, b);
-		gfx.PutPixel(x + 4, y, r, g, b);
-		gfx.PutPixel(x + 5, y, r, g, b);
+		g = 255;
+		b = 255;
 	}
-	Draw(draw_x, draw_y, 0, 255, 0);
+	DrawBox(x, y, r, g, b);
+	DrawBox(draw_x, draw_y, 0, 255, 0);
+	DrawBox(draw_x1, draw_y1, 0, 0, 255);
 }
 
-void Game::Draw(int x, int y, int r, int g ,int b)
+void Game::DrawBox(int x, int y, int r, int g ,int b)
 {
 	// Upper part of crosshair
 	gfx.PutPixel(x - 7, y - 5 + 1, r, g, b);
@@ -234,3 +154,13 @@ void Game::Draw(int x, int y, int r, int g ,int b)
 	gfx.PutPixel(x + 5, y + 8 - 1, r, g, b);
 	gfx.PutPixel(x + 4, y + 8 - 1, r, g, b);
 }
+
+bool Game::CollisionChecker(int x_Box0, int x_Box1, int y_Box0, int y_Box1)
+{
+	bool isX_Colliding = x_Box0 >= x_Box1 - 14 && x_Box0 <= x_Box1 + 14;
+	bool isY_Colliding = y_Box0 >= y_Box1 - 14 && y_Box0 <= y_Box1 + 14;
+
+	return isX_Colliding && isY_Colliding;
+}
+
+

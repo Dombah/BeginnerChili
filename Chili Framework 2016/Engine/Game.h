@@ -35,7 +35,8 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 	/********************************/
-	void Draw(int x, int y, int r, int g, int b);
+	void DrawBox(int x, int y, int r, int g, int b);
+	bool CollisionChecker(int x_Box0, int x_Box1, int y_Box0, int y_Box1);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -48,14 +49,16 @@ private:
 	int y = 400; // y value of center of crosshair
 	int vx = 0;
 	int vy = 0;
-	int draw_x = 300;
-	int draw_y = 400;
+	int draw_x = 500;
+	int draw_y = 200;
+	int draw_x1 = 333;
+	int draw_y1 = 69;
 	int mv_Increment = 1;
 	int r = 255, g = 255, b = 255;
-	bool isShapeChanged = false;
 	bool inhibitUp = false;
 	bool inhibitDown = false;
 	bool inhibitLeft = false;
 	bool inhibitRight = false;
+	bool isColliding = false;
 	/********************************/
 };
