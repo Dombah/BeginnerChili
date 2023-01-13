@@ -99,8 +99,8 @@ void Game::UpdateModel()
 	x += vx;
 	y += vy;
 	//InhibitMovementPastScreenSize();
-	x = InhibitMovementPastScreenSizeHardX(x);
-	y = InhibitMovementPastScreenSizeHardY(y);
+	x = ClampSizeX(x);
+	y = ClampSizeY(y);
 	isColliding = CollisionChecker(x, draw_x, y, draw_y) ||
 				  CollisionChecker(x, draw_x1, y, draw_y1);
 
@@ -186,7 +186,7 @@ void Game::InhibitMovementPastScreenSize()
 	}
 }
 
-int Game::InhibitMovementPastScreenSizeHardX(int x_mobile)
+int Game::ClampSizeX(int x_mobile)
 {
 	if (x_mobile + 5 > gfx.ScreenWidth - 5)
 	{
@@ -199,7 +199,7 @@ int Game::InhibitMovementPastScreenSizeHardX(int x_mobile)
 	return x_mobile;
 }
 
-int Game::InhibitMovementPastScreenSizeHardY(int y_mobile)
+int Game::ClampSizeY(int y_mobile)
 {
 	if (y_mobile - 7 < 0)
 	{

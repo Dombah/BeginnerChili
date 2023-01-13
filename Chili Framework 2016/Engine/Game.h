@@ -39,8 +39,8 @@ private:
 	bool CollisionChecker(int x_Box0, int x_Box1, int y_Box0, int y_Box1);
 	/*Homework*/
 	void InhibitMovementPastScreenSize();
-	int InhibitMovementPastScreenSizeHardX(int x_mobile);
-	int InhibitMovementPastScreenSizeHardY(int y_mobile);
+	int ClampSizeX(int x_mobile);
+	int ClampSizeY(int y_mobile);
 	/********************************/
 private:
 	MainWindow& wnd;
