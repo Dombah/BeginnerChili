@@ -1,7 +1,10 @@
 ﻿  Game.cpp
+  Main.cpp
+  MainWindow.cpp
   Generating code
-  8 of 549 functions ( 1.5%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+C:\Users\Domagoj\BeginnerChili\Chili Framework 2016\Engine\Game.cpp(615): warning C4715: 'Game::ClampScreenX': not all control paths return a value
+  9 of 555 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Engine.vcxproj -> C:\Users\Domagoj\Desktop\Chili DirectX Framework\Chili Framework 2016\Release\Engine.exe
+  Engine.vcxproj -> C:\Users\Domagoj\BeginnerChili\Chili Framework 2016\Release\Engine.exe

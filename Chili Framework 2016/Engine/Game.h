@@ -35,34 +35,36 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 	/********************************/
-	void DrawBox(int x, int y, int r, int g, int b);
-	bool CollisionChecker(int x_Box0, int x_Box1, int y_Box0, int y_Box1);
-	/*Homework*/
-	void InhibitMovementPastScreenSize();
-	int ClampSizeX(int x_mobile);
-	int ClampSizeY(int y_mobile);
+	void DrawDude(int x, int y);
+	void DrawPoo(int x, int y);
+	void DrawGameOver(int x, int y);
+	void DrawTitleScreen(int x, int y);
+	int ClampScreenX(int x, int width);
+	int ClampScreenY(int y, int height);
+	bool IsColliding(int x0, int y0, int width0, int height0,
+					int x1, int y1, int width1, int height1
+					);
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
-	// x and y modifiers
-	// NOTE: upper < 795 and lower < 595
-	//		 upper > 4   and lower > 4
-	int x = 286; // x value of center of crosshair
-	int y = 400; // y value of center of crosshair
-	int vx = 0;
-	int vy = 0;
-	int draw_x = 500;
-	int draw_y = 200;
-	int draw_x1 = 333;
-	int draw_y1 = 69;
-	int mv_Increment = 1;
-	int r = 255, g = 255, b = 255;
-	bool inhibitUp = false;
-	bool inhibitDown = false;
-	bool inhibitLeft = false;
-	bool inhibitRight = false;
-	bool isColliding = false;
+	int dudeX = 400;
+	int dudeY = 300;
+	int poo0X = 300;
+	int poo0Y = 150;
+	int poo1X = 600;
+	int poo1Y = 500;
+	int poo2X = 150;
+	int poo2Y = 50;
+	int dudeWidth = 20;
+	int dudeHeight = 20;
+	int pooWidth = 24;
+	int pooHeight = 24;
+	bool poo0IsEated = false;
+	bool poo1IsEated = false;
+	bool poo2IsEated = false;
+	bool isGameOver = false;
+	bool isStarted = false;
 	/********************************/
 };
