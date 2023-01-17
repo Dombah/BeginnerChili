@@ -67,7 +67,52 @@ void Game::UpdateModel()
 		{
 			dudeY += 1;
 		}
-		dudeX = ClampScreenX(dudeX, dudeWidth);
+		poo0X += poo0xVel;
+		poo0Y += poo0yVel;
+		
+		poo0X = ClampScreenX(poo0X, pooWidth);
+		poo0Y = ClampScreenY(poo0Y, pooHeight);
+
+		if (ClampScreenY(poo0Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo0Y, pooHeight) == 0)
+		{
+			poo0yVel = -poo0yVel;
+		}
+		if (ClampScreenX(poo0X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo0X, pooWidth) == 0)
+		{
+			poo0xVel = -poo0xVel;
+		}
+
+		poo1X += poo1xVel;
+		poo1Y += poo1yVel;
+
+		poo1X = ClampScreenX(poo1X, pooWidth);
+		poo1Y = ClampScreenY(poo1Y, pooHeight);
+
+		if (ClampScreenY(poo1Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo1Y, pooHeight) == 0)
+		{
+			poo1yVel = -poo1yVel;
+		}
+		if (ClampScreenX(poo0X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo1X, pooWidth) == 0)
+		{
+			poo1xVel = -poo1xVel;
+		}
+
+		poo2X += poo2xVel;
+		poo2Y += poo2yVel;
+
+		poo2X = ClampScreenX(poo2X, pooWidth);
+		poo2Y = ClampScreenY(poo2Y, pooHeight);
+
+		if (ClampScreenY(poo2Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo2Y, pooHeight) == 0)
+		{
+			poo2yVel = -poo2yVel;
+		}
+		if (ClampScreenX(poo2X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo2X, pooWidth) == 0)
+		{
+			poo2xVel = -poo2xVel;
+		}
+
+ 		dudeX = ClampScreenX(dudeX, dudeWidth);
 		dudeY = ClampScreenY(dudeY, dudeHeight);
 		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight,
 			poo0X, poo0Y, pooWidth, pooHeight))
