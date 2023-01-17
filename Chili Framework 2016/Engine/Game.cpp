@@ -69,47 +69,46 @@ void Game::UpdateModel()
 		}
 		poo0X += poo0xVel;
 		poo0Y += poo0yVel;
-		
-		poo0X = ClampScreenX(poo0X, pooWidth);
-		poo0Y = ClampScreenY(poo0Y, pooHeight);
-
-		if (ClampScreenY(poo0Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo0Y, pooHeight) == 0)
-		{
-			poo0yVel = -poo0yVel;
-		}
-		if (ClampScreenX(poo0X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo0X, pooWidth) == 0)
-		{
-			poo0xVel = -poo0xVel;
-		}
-
 		poo1X += poo1xVel;
 		poo1Y += poo1yVel;
-
-		poo1X = ClampScreenX(poo1X, pooWidth);
-		poo1Y = ClampScreenY(poo1Y, pooHeight);
-
-		if (ClampScreenY(poo1Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo1Y, pooHeight) == 0)
-		{
-			poo1yVel = -poo1yVel;
-		}
-		if (ClampScreenX(poo0X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo1X, pooWidth) == 0)
-		{
-			poo1xVel = -poo1xVel;
-		}
-
 		poo2X += poo2xVel;
 		poo2Y += poo2yVel;
 
-		poo2X = ClampScreenX(poo2X, pooWidth);
-		poo2Y = ClampScreenY(poo2Y, pooHeight);
-
-		if (ClampScreenY(poo2Y, pooHeight) == (gfx.ScreenHeight - 1 - pooHeight) || ClampScreenY(poo2Y, pooHeight) == 0)
+		const int oldPoo0x = poo0X;
+		const int oldPoo0y = poo0Y;
+		poo0X = ClampScreenX(poo0X, pooWidth);
+		if (poo0X != oldPoo0x)
 		{
-			poo2yVel = -poo2yVel;
+			poo0xVel = -poo0xVel;
 		}
-		if (ClampScreenX(poo2X, pooWidth) == (gfx.ScreenWidth - 1 - pooWidth) || ClampScreenX(poo2X, pooWidth) == 0)
+		poo0Y = ClampScreenY(poo0Y, pooHeight);
+		if (poo0Y != oldPoo0y)
+		{
+			poo0yVel = -poo0yVel;
+		}
+		const int oldPoo1x = poo1X;
+		const int oldPoo1y = poo1Y;
+		poo1X = ClampScreenX(poo1X, pooWidth);
+		if (poo1X != oldPoo1x)
+		{
+			poo1xVel = -poo1xVel;
+		}
+		poo1Y = ClampScreenY(poo1Y, pooHeight);
+		if (poo1Y != oldPoo1y)
+		{
+			poo1yVel = -poo1yVel;
+		}
+		const int oldPoo2x = poo2X;
+		const int oldPoo2y = poo2Y;
+		poo2X = ClampScreenX(poo2X, pooWidth);
+		if (poo2X != oldPoo2x)
 		{
 			poo2xVel = -poo2xVel;
+		}
+		poo2Y = ClampScreenY(poo2Y, pooHeight);
+		if (poo2Y != oldPoo2y)
+		{
+			poo2yVel = -poo2yVel;
 		}
 
  		dudeX = ClampScreenX(dudeX, dudeWidth);
