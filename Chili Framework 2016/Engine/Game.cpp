@@ -38,6 +38,9 @@ Game::Game( MainWindow& wnd )
 	poo2.x = xDist(rng);
 	poo2.y = yDist(rng);
 
+	dude.x = 300;
+	dude.y = 400;
+
 	poo0.vx = 1;
 	poo0.vy = -1;
 	poo1.vx = -1;
@@ -60,40 +63,40 @@ void Game::UpdateModel()
 	{
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
-			dudeX += 1;
+			dude.x += 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_LEFT))
 		{
-			dudeX -= 1;
+			dude.x -= 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			dudeY -= 1;
+			dude.y -= 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			dudeY += 1;
+			dude.y += 1;
 		}
 		poo0.Update();
 		poo1.Update();
 		poo2.Update();
 
- 		dudeX = ClampScreenX(dudeX, dudeWidth);
-		dudeY = ClampScreenY(dudeY, dudeHeight);
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight,
+ 		dude.x = ClampScreenX(dude.x, Dude::Width);
+		dude.y = ClampScreenY(dude.y, Dude::Height);
+		if (IsColliding(dude.x, dude.y, Dude::Width, Dude::Height,
 			poo0.x, poo0.y, Poo::width, Poo::height))
 		{
 			poo0.pooIsEated = true;
 		}
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight,
+		if (IsColliding(dude.x, dude.y, Dude::Width, Dude::Height,
 			poo1.x, poo1.y, Poo::width, Poo::height))
 		{
 			poo1.pooIsEated = true;
 		}
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight,
+		if (IsColliding(dude.x, dude.y, Dude::Width, Dude::Height,
 			poo2.x, poo2.y, Poo::width, Poo::height))
 		{
-			poo2.pooIsEated = true;
+			poo2.pooIsEated = true; 
 		}
 		isGameOver = poo0.pooIsEated && poo1.pooIsEated && poo2.pooIsEated;
 	}
@@ -29056,7 +29059,7 @@ void Game::ComposeFrame()
 {
 	if (isStarted)
 	{
-		DrawDude(dudeX, dudeY);
+		DrawDude(dude.x, dude.y);
 		if (!poo0.pooIsEated)
 			DrawPoo(poo0.x, poo0.y);
 		if (!poo1.pooIsEated)

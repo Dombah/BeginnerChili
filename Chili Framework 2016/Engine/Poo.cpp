@@ -1,6 +1,5 @@
 #include "Poo.h"
 
-
 void Poo::Update()
 {
 	x += vx;
